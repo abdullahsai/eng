@@ -1,0 +1,21 @@
+body {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  font-family: 'Cairo', sans-serif;
+}
+
+.navbar {
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.card {
+  border: none;
+  border-radius: 0.5rem;
+  background-color: rgba(255,255,255,0.85);
+  box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,0.075);
+}
+
+.btn {
+  font-weight: 500;
+}
