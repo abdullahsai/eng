@@ -16,6 +16,9 @@ npm install
 npm start
 ```
 
+If your sources require authentication, set an `API_KEY` environment variable. The
+server will include it in an `X-API-Key` header when fetching reports.
+
 3. Visit `http://localhost:3000` for the dashboard or `http://localhost:3000/settings.html` to manage API URLs.
 
 Data sources are stored in `sources.json`.
