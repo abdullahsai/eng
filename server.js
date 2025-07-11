@@ -6,6 +6,7 @@ const { isSameWeek, isSameMonth, isSameYear } = require('date-fns');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+const API_KEY = process.env.API_KEY;
 const DATA_FILE = path.join(__dirname, 'sources.json');
 
 app.use(express.json());
@@ -63,7 +64,9 @@ app.get('/api/stats', async (req, res) => {
 
   for (const url of sources) {
     try {
-      const response = await fetch(url);
+      const response = await fetch(url, {
+        headers: API_KEY ? { 'X-API-Key': API_KEY } : undefined
+      });
       const data = await response.json();
       const reports = Array.isArray(data.reports) ? data.reports : [];
 
