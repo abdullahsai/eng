@@ -55,6 +55,16 @@ async function refreshStats() {
   btn.disabled = true;
   const res = await fetch('/api/stats');
   const data = await res.json();
+
+  function getSourceName(url) {
+    try {
+      const hostname = new URL(url).hostname;
+      return hostname.split('.')[0] || url;
+    } catch (e) {
+      return url;
+    }
+  }
+
   const container = document.getElementById('stats');
   const table = document.createElement('table');
   table.className = 'table table-bordered table-striped';
@@ -63,9 +73,9 @@ async function refreshStats() {
   (data.results || []).forEach(stat => {
     const row = document.createElement('tr');
     if (stat.error) {
-      row.innerHTML = `<td>${stat.source}</td><td colspan="4">${stat.error}</td>`;
+      row.innerHTML = `<td>${getSourceName(stat.source)}</td><td colspan="4">${stat.error}</td>`;
     } else {
-      row.innerHTML = `<td>${stat.source}</td>`+
+      row.innerHTML = `<td>${getSourceName(stat.source)}</td>`+
         `<td>${stat.total}</td>`+
         `<td>${stat.weekly}</td>`+
         `<td>${stat.monthly}</td>`+
