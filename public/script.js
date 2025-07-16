@@ -68,7 +68,13 @@ async function refreshStats() {
   const container = document.getElementById('stats');
   const table = document.createElement('table');
   table.className = 'table table-bordered table-striped table-hover align-middle shadow-sm';
-  table.innerHTML = `<thead class="table-light"><tr><th>المصدر</th><th>إجمالي التقارير</th><th>هذا الأسبوع</th><th>هذا الشهر</th><th>هذا العام</th></tr></thead>`;
+  table.innerHTML = `<thead class="table-light"><tr>
+    <th>المصدر</th>
+    <th>إجمالي<br>التقارير</th>
+    <th>هذا<br>الأسبوع</th>
+    <th>هذا<br>الشهر</th>
+    <th>هذا<br>العام</th>
+  </tr></thead>`;
   const tbody = document.createElement('tbody');
   (data.results || []).forEach(stat => {
     const row = document.createElement('tr');
