@@ -36,3 +36,20 @@ body {
     width: 100%;
   }
 }
+
+/* Center the stats table and give it a wider layout on desktops */
+#stats {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (min-width: 992px) {
+  #stats {
+    width: 66%;
+  }
+}
+
+#stats table tbody tr:nth-child(even) {
+  background-color: rgba(0, 0, 0, 0.05);
+}
