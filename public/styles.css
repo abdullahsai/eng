@@ -49,9 +49,16 @@ body {
   margin-right: auto;
 }
 
+/* Ensure the table fills the container and stays centered */
+#stats table {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 @media (min-width: 992px) {
   #stats {
-    width: 66%;
+    width: 66vw;
   }
 }
 
