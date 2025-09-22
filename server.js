@@ -7,7 +7,8 @@ const { isSameWeek, isSameMonth, isSameYear } = require('date-fns');
 const app = express();
 const PORT = process.env.PORT || 3000;
 const API_KEY = process.env.API_KEY;
-const DATA_FILE = path.join(__dirname, 'sources.json');
+const DATA_DIR = path.join(__dirname, 'data');
+const DATA_FILE = path.join(DATA_DIR, 'sources.json');
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
@@ -22,6 +23,7 @@ function readSources() {
 }
 
 function writeSources(sources) {
+  fs.mkdirSync(DATA_DIR, { recursive: true });
   fs.writeFileSync(DATA_FILE, JSON.stringify({ sources }, null, 2));
 }
 
