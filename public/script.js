@@ -77,7 +77,15 @@ async function refreshStats() {
   </tr></thead>`;
   const tbody = document.createElement('tbody');
   const totals = { total: 0, weekly: 0, monthly: 0, yearly: 0 };
-  (data.results || []).forEach(stat => {
+  const stats = [...(data.results || [])];
+  const getYearlyValue = (stat) => {
+    if (!stat || stat.error) return Number.NEGATIVE_INFINITY;
+    const value = Number(stat.yearly);
+    return Number.isFinite(value) ? value : 0;
+  };
+  stats.sort((a, b) => getYearlyValue(b) - getYearlyValue(a));
+
+  stats.forEach(stat => {
     const row = document.createElement('tr');
     if (stat.error) {
       row.innerHTML = `<td>${getSourceName(stat.source)}</td><td colspan="4">${stat.error}</td>`;
