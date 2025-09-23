@@ -76,20 +76,39 @@ async function refreshStats() {
     <th>هذا<br>العام</th>
   </tr></thead>`;
   const tbody = document.createElement('tbody');
+  const totals = { total: 0, weekly: 0, monthly: 0, yearly: 0 };
   (data.results || []).forEach(stat => {
     const row = document.createElement('tr');
     if (stat.error) {
       row.innerHTML = `<td>${getSourceName(stat.source)}</td><td colspan="4">${stat.error}</td>`;
     } else {
+      const total = Number(stat.total) || 0;
+      const weekly = Number(stat.weekly) || 0;
+      const monthly = Number(stat.monthly) || 0;
+      const yearly = Number(stat.yearly) || 0;
       row.innerHTML = `<td>${getSourceName(stat.source)}</td>`+
-        `<td>${stat.total}</td>`+
-        `<td>${stat.weekly}</td>`+
-        `<td>${stat.monthly}</td>`+
-        `<td>${stat.yearly}</td>`;
+        `<td>${total}</td>`+
+        `<td>${weekly}</td>`+
+        `<td>${monthly}</td>`+
+        `<td>${yearly}</td>`;
+      totals.total += total;
+      totals.weekly += weekly;
+      totals.monthly += monthly;
+      totals.yearly += yearly;
     }
     tbody.appendChild(row);
   });
   table.appendChild(tbody);
+  const tfoot = document.createElement('tfoot');
+  const totalsRow = document.createElement('tr');
+  totalsRow.className = 'table-summary-row';
+  totalsRow.innerHTML = `<th scope="row">المجموع</th>`+
+    `<td>${totals.total}</td>`+
+    `<td>${totals.weekly}</td>`+
+    `<td>${totals.monthly}</td>`+
+    `<td>${totals.yearly}</td>`;
+  tfoot.appendChild(totalsRow);
+  table.appendChild(tfoot);
   container.innerHTML = '';
   container.appendChild(table);
   btn.disabled = false;

@@ -65,3 +65,13 @@ body {
 #stats table tbody tr:nth-child(even) {
   background-color: rgba(0, 0, 0, 0.05);
 }
+
+#stats table tfoot tr {
+  border-top: 4px solid #000;
+}
+
+#stats table tfoot th,
+#stats table tfoot td {
+  background-color: #f8f9fa;
+  font-weight: 700;
+}
