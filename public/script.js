@@ -71,10 +71,21 @@ async function refreshStats() {
   const now = new Date();
   const currentYear = now.getFullYear();
   const currentMonthName = new Intl.DateTimeFormat('ar', { month: 'long' }).format(now);
+  const weekStart = new Date(now);
+  const weekDay = weekStart.getDay();
+  weekStart.setDate(weekStart.getDate() - weekDay);
+  const weekEnd = new Date(weekStart);
+  weekEnd.setDate(weekStart.getDate() + 6);
+  const formatDate = (date) => {
+    const day = date.getDate();
+    const month = date.getMonth() + 1;
+    return `${day}/${month}`;
+  };
+  const weekRangeLabel = `${formatDate(weekStart)}-${formatDate(weekEnd)}`;
   table.innerHTML = `<thead class="table-light"><tr>
     <th>المصدر</th>
     <th>إجمالي<br>التقارير</th>
-    <th>هذا<br>الأسبوع</th>
+    <th>الأسبوع<br>${weekRangeLabel}</th>
     <th>الشهر<br>${currentMonthName}</th>
     <th>السنة<br>${currentYear}</th>
   </tr></thead>`;
