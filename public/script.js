@@ -68,12 +68,15 @@ async function refreshStats() {
   const container = document.getElementById('stats');
   const table = document.createElement('table');
   table.className = 'table table-bordered table-striped table-hover align-middle shadow-sm';
+  const now = new Date();
+  const currentYear = now.getFullYear();
+  const currentMonthName = new Intl.DateTimeFormat('ar', { month: 'long' }).format(now);
   table.innerHTML = `<thead class="table-light"><tr>
     <th>المصدر</th>
     <th>إجمالي<br>التقارير</th>
     <th>هذا<br>الأسبوع</th>
-    <th>هذا<br>الشهر</th>
-    <th>هذا<br>العام</th>
+    <th>الشهر<br>${currentMonthName}</th>
+    <th>السنة<br>${currentYear}</th>
   </tr></thead>`;
   const tbody = document.createElement('tbody');
   const totals = { total: 0, weekly: 0, monthly: 0, yearly: 0 };
