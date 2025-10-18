@@ -81,7 +81,7 @@ async function refreshStats() {
     const month = date.getMonth() + 1;
     return `${day}/${month}`;
   };
-  const weekRangeLabel = `${formatDate(weekStart)} To ${formatDate(weekEnd)}`;
+  const weekRangeLabel = `${formatDate(weekStart)}-${formatDate(weekEnd)}`;
   table.innerHTML = `<thead class="table-light"><tr>
     <th>المصدر</th>
     <th>إجمالي<br>التقارير</th>
